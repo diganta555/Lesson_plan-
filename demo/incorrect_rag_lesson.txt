@@ -1,0 +1,78 @@
+# Introduction to RAG: Retrieval-Augmented Generation
+
+## What It Is
+
+RAG stands for **Retrieval-Augmented Generation**. It is a method used in artificial intelligence (AI) to help machines answer questions or produce information more accurately. RAG works by combining two main abilities:
+
+1. **Retrieval**: Finding relevant information from outside sources, like documents or databases.
+2. **Generation**: Using a language model, which is a type of AI designed to understand and produce human language, to create a clear answer based on that information.
+
+So, instead of just guessing answers from what it learned before, a RAG system looks up useful information first, then explains or writes an answer using that information.
+
+## Why It Matters
+
+Imagine asking a computer a complicated question, like “What are the health benefits of green tea?” Without RAG, the computer would only rely on what it learned during training, which might be outdated or incomplete. But with RAG, the system finds up-to-date and relevant facts to help answer your question better.
+
+This process improves accuracy and keeps answers fresh without needing to retrain the language model every time new information appears. This makes RAG very useful for applications like chatbots, search tools, and information assistants.
+
+## How It Works
+
+RAG works in two main stages: **document preparation** and **question answering**.
+
+### Document Preparation
+
+Before answering questions, the system needs to prepare the documents it will search. Here’s one common way to do that:
+
+- **Collect documents**: Gather lots of texts or records (like articles or reports).
+- **Chunking**: Break long documents into smaller parts called **chunks** so it’s easier to find precise information.
+- **Embeddings**: Convert each chunk into a numerical form called an **embedding**, which captures its meaning so the computer can compare and search efficiently.
+- **Vector Store**: Store all embeddings together in a database called a **vector store**. This special store helps quickly find chunks similar in meaning to the question asked.
+
+It’s important to know that this is one common method for retrieval, but not the only one. Other methods might include searching by matching keywords or looking up structured database records. RAG does not require using embeddings or vector stores—these are typical but optional implementations.
+
+### Question Answering
+
+When a user asks a question, the RAG system does the following:
+
+1. **Retrieve** relevant chunks from the prepared documents based on the question.
+2. Supply these chunks along with the question as **context** to a large language model (LLM). An LLM is a powerful AI trained to understand and generate human language.
+3. The LLM then **generates** an answer using the context it was given.
+
+Importantly, the model itself isn’t retrained when documents change – only the document preparation is updated if needed.
+
+## Worked Example
+
+Let’s see a simple fictional example to understand the process clearly:
+
+- **Question**: “Who invented the telephone?”
+- **Retrieved passage** from documents: “Alexander Graham Bell is credited with inventing the telephone in 1876.”
+- **Context supplied to the LLM**: The system sends both the question and this passage to the language model.
+- **Answer generated**: “The telephone was invented by Alexander Graham Bell in 1876.”
+
+In this example, the system found a relevant piece of information (the retrieved passage) and used it to produce a clear answer. This shows how retrieval and generation work together.
+
+## Limitations
+
+While RAG improves answering, it has some important limitations to keep in mind:
+
+1. **Retrieved information may be irrelevant or incomplete**: Sometimes the best passages found may not fully answer the question or might include outdated information.
+   
+2. **LLM hallucinations**: The language model may still produce statements that are not supported by the retrieved information; this is called **hallucination**. The answer might sound confident but not be accurate.
+
+Because of these issues, RAG **does not guarantee correct answers** every time. It helps but is not perfect.
+
+Also, RAG does **not automatically search the entire internet**. It only searches the information sources it was set up with, such as a fixed set of documents preprocessed in advance.
+
+## Recap
+
+Every RAG system must use embeddings and a vector store.
+
+- **RAG** is a way to improve AI answering by combining retrieval of external information with language generation.
+- It involves preparing documents (chunking, embeddings, vector stores—commonly, but not exclusively) and then answering questions by retrieving relevant data and giving it as context to a language model.
+- This method keeps answers more accurate and up to date without retraining the model for every new document.
+- It works in two stages: preparing documents and answering questions.
+- A worked example is knowing who invented the telephone by retrieving a passage and then generating the answer.
+- However, RAG systems can sometimes find irrelevant information or produce hallucinated answers and do not search the full internet automatically.
+- Hence, while powerful, RAG systems should be used thoughtfully and not trusted blindly.
+
+By understanding what RAG is and how it works, you can see how modern AI systems bring together searching and language to help answer questions more reliably.

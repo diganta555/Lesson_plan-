@@ -1,0 +1,81 @@
+# Introduction to RAG: Retrieval-Augmented Generation
+
+## What It Is
+
+RAG stands for **Retrieval-Augmented Generation**. It is a way to improve how computers answer questions or create text by combining two things:
+
+- **Retrieval:** Finding relevant, useful information from an external source or collection.
+- **Generation:** Using a large language model (LLM) to create or generate an answer by processing language.
+
+An **LLM (large language model)** is a type of computer program trained to understand and generate human-like language. But by itself, an LLM only knows what it learned during training, which may be limited in scope or not up to date.
+
+RAG improves this by first **retrieving** helpful information and then **supplying that information as context** to the LLM, which uses it to **generate** a more informed answer. This combination can help make answers more relevant and accurate.
+
+## Why It Matters
+
+Imagine you want to ask a computer about a very specific topic, like the history of the Eiffel Tower. The LLM has learned a lot about language and facts, but its knowledge might be outdated or incomplete because new facts can appear after it was trained.
+
+With RAG, the system first finds the most relevant documents or passages that contain information about the Eiffel Tower. Then it gives those passages as background material to the LLM. The LLM uses this information to generate a better, more up-to-date answer.
+
+This way, RAG helps computers provide more specific, context-aware answers, without needing to retrain the large language model every time new information is added.
+
+## How It Works
+
+RAG happens in two main stages: **document preparation** and **question answering**.
+
+### Document Preparation
+
+1. **Collect documents:** Gather a set of documents or texts, such as articles or reports.
+2. **Chunking:** Break these documents into smaller pieces called **chunks** or passages to make searching easier.
+3. **Create embeddings:** For each chunk, create an **embedding**, which is a numerical representation of the text’s meaning. Think of it as a way for the computer to understand what the text is about beyond the exact words.
+4. **Index in a vector store:** Store these embeddings and their related chunks in a special database called a **vector store**. This allows the system to quickly find chunks with meanings similar to a question.
+
+### Question Answering
+
+When a question comes in:
+
+1. **Retrieve relevant passages:** The system compares the question's embedding to the stored chunks’ embeddings and finds the most relevant passages.
+2. **Supply context:** The retrieved passages and the question are given together as **context** to the LLM.
+3. **Generate the answer:** The LLM uses this context to create an answer.
+
+Importantly, **document preparation and answering are separate**. When documents are updated, you just revise the chunks and embeddings, without needing to change or retrain the language model.
+
+### Important clarifications:
+
+- RAG uses configured, prepared information sources like a company’s documents or a curated database.
+- It is **not** a system that automatically searches the entire internet.
+- The model may still produce errors or unsupported statements called **hallucinations**.
+  
+## Worked Example
+
+- **Question:** "When was the Eiffel Tower completed?"
+
+- **Retrieved passage:**  
+  "The Eiffel Tower was completed in 1889 as the entrance arch for the 1889 World's Fair held in Paris."
+
+- **Context supplied to LLM:**  
+  The question and the above passage are given to the LLM.
+
+- **Answer generated:**  
+  "The Eiffel Tower was completed in 1889 for the World's Fair in Paris."
+
+This answer directly uses the retrieved, relevant information supplied to the model, making it specific and informed.
+
+## Limitations
+
+1. **Relevance and completeness:** The retrieved information might sometimes be irrelevant, incomplete, or outdated. If the chunks don’t cover the answer well, the model won’t have good context.
+
+2. **Hallucinations:** Even with relevant context, the LLM may generate statements not supported by the supplied passages. These unsupported statements are called hallucinations. RAG systems do not guarantee fully correct answers.
+
+3. **No automatic internet search:** RAG only searches the configured, prepared information sources. It doesn't automatically look through the whole internet, so its coverage depends on the documents it has access to.
+
+## Recap
+
+- RAG combines **retrieval** of relevant information with **generation** of answers by an LLM.
+- First, documents are prepared: broken into chunks, converted into embeddings, and stored for fast search.
+- When asked a question, RAG retrieves relevant text chunks, supplies them to the LLM as context, and the model generates an answer based on that context.
+- This approach helps create more informed answers without retraining the language model whenever documents change.
+- However, retrieved info can be incomplete, and the model can still “hallucinate,” producing unsupported answers.
+- RAG works only on configured document sources and does not automatically scan the entire internet.
+
+By using RAG, AI systems can give more accurate and specific responses by combining the best of information search and language understanding in one process.
